@@ -14,8 +14,6 @@
   <img src="docs/preview-movie.png" alt="Movie card preview" height="300" />
   &nbsp;&nbsp;
   <img src="docs/preview-episode.png" alt="Episode card preview" height="300" />
-  &nbsp;&nbsp;
-  <img src="docs/preview-plugin-tile.png" alt="Plugin tile in Jellyfin Dashboard" height="300" />
 </p>
 
 ```
