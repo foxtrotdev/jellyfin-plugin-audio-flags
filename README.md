@@ -1,17 +1,19 @@
-# Jellyfin Audio Flags
+<h1 align="center">🎧 Audio Flags 💬</h1>
+<p align="center"><b>Jellyfin plugin — language flags under every card</b><br/>
+<sub>Audio + subtitle flag emoji rendered directly on library posters.</sub></p>
 
-Show audio and subtitle language flag emoji under the title on library cards.
-
-<p>
-  <img src="docs/preview-movie.png" alt="Movie card preview" height="280" />
-  &nbsp;&nbsp;
-  <img src="docs/preview-episode.png" alt="Episode card preview" height="280" />
+<p align="center">
+  <a href="https://github.com/foxtrotdev/jellyfin-plugin-audio-flags/actions"><img alt="Build" src="https://github.com/foxtrotdev/jellyfin-plugin-audio-flags/actions/workflows/build.yml/badge.svg"></a>
+  <a href="LICENSE"><img alt="License: MIT" src="https://img.shields.io/badge/license-MIT-blue.svg"></a>
+  <a href="https://jellyfin.org/"><img alt="Jellyfin 10.10+" src="https://img.shields.io/badge/jellyfin-10.10%2B-00A4DC.svg"></a>
+  <a href="https://github.com/foxtrotdev/jellyfin-plugin-audio-flags/releases"><img alt="GitHub release" src="https://img.shields.io/github/v/release/foxtrotdev/jellyfin-plugin-audio-flags"></a>
 </p>
 
-[![Build](https://github.com/foxtrotdev/jellyfin-plugin-audio-flags/actions/workflows/build.yml/badge.svg)](https://github.com/foxtrotdev/jellyfin-plugin-audio-flags/actions)
-[![License: MIT](https://img.shields.io/badge/license-MIT-blue.svg)](LICENSE)
-[![Jellyfin 10.10+](https://img.shields.io/badge/jellyfin-10.10%2B-00A4DC.svg)](https://jellyfin.org/)
-[![GitHub release](https://img.shields.io/github/v/release/foxtrotdev/jellyfin-plugin-audio-flags)](https://github.com/foxtrotdev/jellyfin-plugin-audio-flags/releases)
+<p align="center">
+  <img src="docs/preview-movie.png" alt="Movie card preview" height="300" />
+  &nbsp;&nbsp;
+  <img src="docs/preview-episode.png" alt="Episode card preview" height="300" />
+</p>
 
 ```
 [ poster ]
