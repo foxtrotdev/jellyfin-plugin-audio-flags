@@ -1,4 +1,5 @@
-<h1 align="center">🎧 Audio Flags 💬</h1>
+<p align="center"><img src="docs/logo.png" alt="Audio Flags logo" width="160"/></p>
+<h1 align="center">Audio Flags</h1>
 <p align="center"><b>Jellyfin plugin — language flags under every card</b><br/>
 <sub>Audio + subtitle flag emoji rendered directly on library posters.</sub></p>
 
