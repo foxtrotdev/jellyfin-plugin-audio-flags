@@ -1,0 +1,111 @@
+name: Build
+
+on:
+  push:
+    branches: [main]
+    tags: ['v*.*.*']
+  pull_request:
+    branches: [main]
+  workflow_dispatch:
+
+permissions:
+  contents: write
+
+jobs:
+  build:
+    runs-on: ubuntu-latest
+    steps:
+      - name: Checkout
+        uses: actions/checkout@v4
+
+      - name: Setup .NET 8
+        uses: actions/setup-dotnet@v4
+        with:
+          dotnet-version: 8.0.x
+
+      - name: Restore
+        run: dotnet restore Jellyfin.Plugin.AudioFlags/Jellyfin.Plugin.AudioFlags.csproj
+
+      - name: Build
+        run: dotnet build Jellyfin.Plugin.AudioFlags/Jellyfin.Plugin.AudioFlags.csproj --configuration Release --no-restore
+
+      - name: Publish
+        run: dotnet publish Jellyfin.Plugin.AudioFlags/Jellyfin.Plugin.AudioFlags.csproj --configuration Release --output ./publish --no-restore
+
+      - name: Determine version
+        id: ver
+        run: |
+          if [[ "${GITHUB_REF}" == refs/tags/v* ]]; then
+            VERSION="${GITHUB_REF#refs/tags/v}"
+          else
+            VERSION="0.0.0-dev.$(date +%Y%m%d%H%M%S)"
+          fi
+          echo "version=${VERSION}" >> "$GITHUB_OUTPUT"
+          echo "Resolved version: ${VERSION}"
+
+      - name: Stage plugin folder
+        run: |
+          VERSION='${{ steps.ver.outputs.version }}'
+          STAGE="stage/AudioFlags_${VERSION}"
+          mkdir -p "$STAGE"
+          cp publish/Jellyfin.Plugin.AudioFlags.dll "$STAGE/"
+          cat > "$STAGE/meta.json" <<EOF
+          {
+            "category": "General",
+            "changelog": "See CHANGELOG.md",
+            "description": "Show audio/subtitle language flag emoji under the title on library cards.",
+            "guid": "b2c3d4e5-f6a7-8899-aabb-ccddeeff0011",
+            "name": "Audio Flags",
+            "overview": "Audio + subtitle flag emoji on cards.",
+            "owner": "foxtrotdev",
+            "targetAbi": "10.10.0.0",
+            "timestamp": "$(date -u +%Y-%m-%dT%H:%M:%SZ)",
+            "version": "${VERSION}.0",
+            "status": "Active",
+            "autoUpdate": true,
+            "imagePath": "",
+            "assemblies": [ "Jellyfin.Plugin.AudioFlags.dll" ]
+          }
+          EOF
+
+      - name: Package zip
+        id: pkg
+        run: |
+          VERSION='${{ steps.ver.outputs.version }}'
+          ZIP="audio-flags_${VERSION}.zip"
+          cd stage && zip -r "../${ZIP}" "AudioFlags_${VERSION}"
+          cd ..
+          SUM=$(sha512sum "$ZIP" | awk '{print $1}')
+          MD5=$(md5sum "$ZIP" | awk '{print $1}')
+          SIZE=$(stat -c%s "$ZIP")
+          echo "zip=${ZIP}" >> "$GITHUB_OUTPUT"
+          echo "sha512=${SUM}" >> "$GITHUB_OUTPUT"
+          echo "md5=${MD5}" >> "$GITHUB_OUTPUT"
+          echo "size=${SIZE}" >> "$GITHUB_OUTPUT"
+
+      - name: Upload artifact
+        uses: actions/upload-artifact@v4
+        with:
+          name: audio-flags-${{ steps.ver.outputs.version }}
+          path: ${{ steps.pkg.outputs.zip }}
+
+      - name: Create / update GitHub release
+        if: startsWith(github.ref, 'refs/tags/v')
+        uses: softprops/action-gh-release@v2
+        with:
+          files: ${{ steps.pkg.outputs.zip }}
+          generate_release_notes: true
+          body: |
+            ## Audio Flags ${{ steps.ver.outputs.version }}
+
+            **SHA-512:** `${{ steps.pkg.outputs.sha512 }}`
+            **MD5:** `${{ steps.pkg.outputs.md5 }}`
+            **Size:** `${{ steps.pkg.outputs.size }}` bytes
+
+            ### Install via Plugin Catalog
+            1. Jellyfin Dashboard → Plugins → Repositories → Add
+            2. URL: `https://raw.githubusercontent.com/foxtrotdev/jellyfin-plugin-audio-flags/main/manifest.json`
+            3. Catalog → Audio Flags → Install → restart Jellyfin
+
+            ### Manual install
+            Download the zip below, extract into your Jellyfin `plugins/` folder, restart.

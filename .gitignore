@@ -1,0 +1,30 @@
+# Build output
+bin/
+obj/
+out/
+publish/
+artifacts/
+
+# Debug symbols
+*.pdb
+
+# Visual Studio
+*.user
+*.suo
+.vs/
+
+# JetBrains Rider
+.idea/
+
+# macOS
+.DS_Store
+
+# Vim / swap files
+*.swp
+
+# Windows
+Thumbs.db
+
+# Keep embedded resources (sources, not build artifacts):
+# !Jellyfin.Plugin.AudioFlags/Web/audio-flags.js
+# !Jellyfin.Plugin.AudioFlags/Configuration/configPage.html
