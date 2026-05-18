@@ -2,7 +2,11 @@
 
 Show audio and subtitle language flag emoji under the title on library cards.
 
-![preview](docs/preview.png)
+<p>
+  <img src="docs/preview-movie.png" alt="Movie card preview" height="280" />
+  &nbsp;&nbsp;
+  <img src="docs/preview-episode.png" alt="Episode card preview" height="280" />
+</p>
 
 [![Build](https://github.com/foxtrotdev/jellyfin-plugin-audio-flags/actions/workflows/build.yml/badge.svg)](https://github.com/foxtrotdev/jellyfin-plugin-audio-flags/actions)
 [![License: MIT](https://img.shields.io/badge/license-MIT-blue.svg)](LICENSE)
