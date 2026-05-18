@@ -7,6 +7,15 @@
     "owner": "foxtrotdev",
     "category": "General",
     "imageUrl": "",
-    "versions": []
+    "versions": [
+      {
+        "version": "1.0.0.0",
+        "changelog": "Initial release.",
+        "targetAbi": "10.10.0.0",
+        "sourceUrl": "https://github.com/foxtrotdev/jellyfin-plugin-audio-flags/releases/download/v1.0.0/audio-flags_1.0.0.zip",
+        "checksum": "9a78f27cdb0e64c832688e491d35d4eb",
+        "timestamp": "2026-05-18T18:48:00Z"
+      }
+    ]
   }
 ]
