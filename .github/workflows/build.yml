@@ -49,6 +49,7 @@ jobs:
           STAGE="stage/AudioFlags_${VERSION}"
           mkdir -p "$STAGE"
           cp publish/Jellyfin.Plugin.AudioFlags.dll "$STAGE/"
+          cp Jellyfin.Plugin.AudioFlags/thumb.png "$STAGE/thumb.png"
           cat > "$STAGE/meta.json" <<EOF
           {
             "category": "General",
@@ -63,7 +64,7 @@ jobs:
             "version": "${VERSION}.0",
             "status": "Active",
             "autoUpdate": true,
-            "imagePath": "",
+            "imagePath": "thumb.png",
             "assemblies": [ "Jellyfin.Plugin.AudioFlags.dll" ]
           }
           EOF
