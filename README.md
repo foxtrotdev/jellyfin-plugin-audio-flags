@@ -4,7 +4,7 @@
 
 <p align="center">
   <a href="https://github.com/foxtrotdev/jellyfin-plugin-audio-flags/actions"><img alt="Build" src="https://github.com/foxtrotdev/jellyfin-plugin-audio-flags/actions/workflows/build.yml/badge.svg"></a>
-  <a href="LICENSE"><img alt="License: MIT" src="https://img.shields.io/badge/license-MIT-blue.svg"></a>
+  <a href="LICENSE"><img alt="License: Apache 2.0" src="https://img.shields.io/badge/license-Apache%202.0-blue.svg"></a>
   <a href="https://jellyfin.org/"><img alt="Jellyfin 10.10+" src="https://img.shields.io/badge/jellyfin-10.10%2B-00A4DC.svg"></a>
   <a href="https://github.com/foxtrotdev/jellyfin-plugin-audio-flags/releases"><img alt="GitHub release" src="https://img.shields.io/github/v/release/foxtrotdev/jellyfin-plugin-audio-flags"></a>
 </p>
@@ -101,4 +101,4 @@ Bug reports, fixes, and language-mapping improvements are welcome. See [CONTRIBU
 
 ## License
 
-[MIT](LICENSE) © 2026 foxtrotdev.
+[Apache License 2.0](LICENSE) © 2026 foxtrotdev. See [NOTICE](NOTICE).
